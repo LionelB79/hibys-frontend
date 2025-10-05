@@ -81,20 +81,20 @@ Commande envoyée depuis le site Hibys
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h2 className="text-5xl md:text-7xl font-bold mb-6">
-            Le souffle Hibys
+            Hibys, votre allié bien-être
           </h2>
           <p className="text-2xl md:text-3xl mb-4 font-light">
-            Plongez dans une infusion rafraîchissante de fleurs d'hibiscus
+            Une infusion aux mille vertus pour votre santé
           </p>
           <p className="text-xl md:text-2xl mb-8 italic">
-            En une gorgée, voyagez sous les tropiques
+            Prenez soin de vous naturellement, chaque jour
           </p>
           <div className="space-y-2 text-lg md:text-xl">
-            <p>Découvrez une boisson traditionnelle africaine revisitée</p>
-            <p>Appréciez les bienfaits de l'Hibiscus Sabdariffa</p>
+            <p>Protégez votre cœur et renforcez votre immunité</p>
+            <p>Découvrez les bienfaits ancestraux de l'Hibiscus Sabdariffa</p>
           </div>
           <p className="text-3xl md:text-4xl font-bold mt-12">
-            Dégustez… Souriez
+            Savourez… Rayonnez
           </p>
         </div>
       </section>
@@ -105,16 +105,16 @@ Commande envoyée depuis le site Hibys
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <Droplet className="w-12 h-12 text-red-600" />
-                <h3 className="text-4xl font-bold text-gray-800">L'infusion</h3>
+                <h3 className="text-4xl font-bold text-gray-800">L'infusion santé</h3>
               </div>
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                Hibys est bien plus qu'une simple boisson rafraîchissante. Riche en antioxydants naturels et en vitamine C, 
+                cette infusion protège vos cellules du vieillissement et booste votre système immunitaire. Son action diurétique 
+                favorise l'élimination des toxines tandis que ses propriétés anti-inflammatoires apaisent votre organisme.
+              </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Hibys est une infusion éclatante de saveurs florales au rouge
-                intense et au goût délicieusement acidulé, relevé par des notes
-                de vanille et une touche de menthe. Dès la première gorgée, la
-                fraicheur et le goût détonant des fleurs d'Hibiscus éveillent
-                vos sens et vous invitent au voyage. 100% naturelle, peu
-                calorique et faiblement sucrée, Hibys est un petit plaisir sain
-                appréciable à tout moment de la journée.
+                Consommée depuis des millénaires en Afrique pour ses vertus médicinales, l'hibiscus aide à réguler la tension artérielle, 
+                facilite la digestion et contribue à maintenir un taux de cholestérol sain. Un véritable élixir de jouvence à portée de main.
               </p>
             </div>
             <div className="relative">
@@ -137,19 +137,17 @@ Commande envoyée depuis le site Hibys
             <div className="order-1 md:order-2">
               <div className="flex items-center gap-3 mb-6">
                 <Flower2 className="w-12 h-12 text-red-600" />
-                <h3 className="text-4xl font-bold text-gray-800">La fleur</h3>
+                <h3 className="text-4xl font-bold text-gray-800">Une fleur d'exception</h3>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                Notre création tire son goût unique et sa couleur intense de la
-                fleur d'Hibiscus Sabdariffa. Nos fleurs d'hibiscus proviennent
-                du Burkina Faso et sont cultivées dans le respect de
-                l'environnement et des coopératives locales.
+                L'Hibiscus Sabdariffa, appelé aussi oseille de Guinée ou karkadé, est la seule variété d'hibiscus aux propriétés 
+                culinaires et médicinales reconnues. Utilisée depuis plus de 4000 ans, cette plante majestueuse est un trésor 
+                de la pharmacopée traditionnelle africaine.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Elles sont cueillies à partir d'arbres de brousse n'ayant reçu
-                aucun traitement phyto-sanitaire, aucun pesticide ni aucun
-                engrais. Nous sélectionnons les plus beaux calices pour vous
-                apporter le meilleur des fleurs.
+                Nos fleurs proviennent du Burkina Faso où elles sont cultivées de manière 100% naturelle, sans pesticides ni engrais chimiques. 
+                Récoltées à la main dans le respect des coopératives locales, nous sélectionnons uniquement les calices les plus riches 
+                en principes actifs pour vous garantir une efficacité optimale.
               </p>
             </div>
           </div>
@@ -162,32 +160,68 @@ Commande envoyée depuis le site Hibys
             <div className="flex items-center justify-center gap-3 mb-6">
               <Heart className="w-12 h-12 text-red-600" />
               <h3 className="text-4xl font-bold text-gray-800">
-                Les bienfaits
+                Des bienfaits scientifiquement prouvés
               </h3>
             </div>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-              Seule variété d'hibiscus à posséder des propriétés culinaires,
-              l'Hibiscus Sabdariffa est connue pour ses vertus et bienfaits :
+              De nombreuses études confirment les vertus exceptionnelles de l'Hibiscus Sabdariffa pour votre santé :
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Propriétés antioxydantes", icon: "🛡️" },
-              { title: "Apport en vitamine C", icon: "🍊" },
-              { title: "Hypocholestérolémiant", icon: "❤️" },
-              { title: "Hypotenseur", icon: "💪" },
+              { 
+                title: "Protection cardiovasculaire", 
+                icon: "❤️",
+                desc: "Régule la tension artérielle et protège le cœur"
+              },
+              { 
+                title: "Puissant antioxydant", 
+                icon: "🛡️",
+                desc: "Lutte contre le vieillissement cellulaire"
+              },
+              { 
+                title: "Renforce l'immunité", 
+                icon: "💪",
+                desc: "Riche en vitamine C, booste vos défenses naturelles"
+              },
+              { 
+                title: "Action détoxifiante", 
+                icon: "✨",
+                desc: "Diurétique et drainant, élimine les toxines"
+              },
             ].map((benefit, idx) => (
               <div
                 key={idx}
                 className="bg-red-50 p-6 rounded-2xl text-center hover:shadow-lg transition"
               >
                 <div className="text-5xl mb-4">{benefit.icon}</div>
-                <h4 className="text-lg font-semibold text-gray-800">
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">
                   {benefit.title}
                 </h4>
+                <p className="text-sm text-gray-600">{benefit.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-16 bg-gradient-to-r from-red-100 to-pink-100 rounded-3xl p-8">
+            <h4 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              L'hibiscus agit aussi sur :
+            </h4>
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <p className="font-semibold text-red-700">Digestion</p>
+                <p className="text-sm text-gray-700">Facilite le transit et apaise les troubles digestifs</p>
+              </div>
+              <div>
+                <p className="font-semibold text-red-700">Cholestérol</p>
+                <p className="text-sm text-gray-700">Aide à maintenir un taux sain de lipides sanguins</p>
+              </div>
+              <div>
+                <p className="font-semibold text-red-700">Peau et cheveux</p>
+                <p className="text-sm text-gray-700">Hydrate, régénère et fortifie naturellement</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -231,7 +265,7 @@ Commande envoyée depuis le site Hibys
             <span className="text-xl font-bold">Hibys</span>
           </div>
           <p className="text-gray-400">
-            © 2025 Hibys - Infusion d'hibiscus artisanale
+            © 2025 Hibys - Infusion d'hibiscus aux vertus ancestrales
           </p>
         </div>
       </footer>
