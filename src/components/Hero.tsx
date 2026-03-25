@@ -1,31 +1,100 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 
-export const Hero: React.FC = () => {
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+export const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-red-600 via-pink-500 to-red-700 text-white py-24">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    <section className="relative overflow-hidden bg-gradient-to-br from-red-600 via-pink-500 to-red-700 text-white py-24" aria-labelledby="hero-title">
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
+        <motion.div
+          className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.1, 0.12, 0.1],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <h2 className="text-5xl md:text-7xl font-bold mb-6">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h2
+          id="hero-title"
+          className="text-5xl md:text-7xl font-bold mb-6"
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
           Hibys, votre allié bien-être
-        </h2>
-        <p className="text-2xl md:text-3xl mb-4 font-light">
+        </motion.h2>
+
+        <motion.p
+          className="text-2xl md:text-3xl mb-4 font-light"
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
           Une infusion aux mille vertus pour votre santé
-        </p>
-        <p className="text-xl md:text-2xl mb-8 italic">
+        </motion.p>
+
+        <motion.p
+          className="text-xl md:text-2xl mb-8 italic"
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
           Prenez soin de vous naturellement, chaque jour
-        </p>
-        <div className="space-y-2 text-lg md:text-xl">
-          <p>Protégez votre cœur et renforcez votre immunité</p>
+        </motion.p>
+
+        <motion.div
+          className="space-y-2 text-lg md:text-xl"
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
+          <p>Protégez votre coeur et renforcez votre immunité</p>
           <p>Découvrez les bienfaits ancestraux de l'Hibiscus Sabdariffa</p>
-        </div>
-        <p className="text-3xl md:text-4xl font-bold mt-12">
-          Savourez… Rayonnez
-        </p>
-      </div>
+        </motion.div>
+
+        <motion.p
+          className="text-3xl md:text-4xl font-bold mt-12"
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
+          Savourez... Rayonnez
+        </motion.p>
+      </motion.div>
     </section>
   );
 };
