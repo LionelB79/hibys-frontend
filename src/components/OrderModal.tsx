@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Send, X } from 'lucide-react';
+import { Send, X, Loader2 } from 'lucide-react';
 import type { OrderForm } from '../types';
 
 interface OrderModalProps {
@@ -10,9 +10,10 @@ interface OrderModalProps {
 interface FormErrors {
   name?: string;
   email?: string;
-  phone?: string;
   quantity?: string;
 }
+
+type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
 const initialFormState: OrderForm = {
   name: '',
@@ -22,14 +23,15 @@ const initialFormState: OrderForm = {
   message: '',
 };
 
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/hibys.fr@gmail.com';
+
 export const OrderModal = ({ isOpen, onClose }: OrderModalProps) => {
   const [orderForm, setOrderForm] = useState<OrderForm>(initialFormState);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
 
   const modalRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -44,12 +46,6 @@ export const OrderModal = ({ isOpen, onClose }: OrderModalProps) => {
       newErrors.email = "L'email n'est pas valide";
     }
 
-    if (!orderForm.phone.trim()) {
-      newErrors.phone = 'Le téléphone est requis';
-    } else if (!/^[\d\s+()-]{10,}$/.test(orderForm.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'Le numéro de téléphone n\'est pas valide';
-    }
-
     if (!orderForm.quantity || orderForm.quantity < 1) {
       newErrors.quantity = 'La quantité doit être au moins 1';
     }
@@ -58,44 +54,59 @@ export const OrderModal = ({ isOpen, onClose }: OrderModalProps) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
       return;
     }
 
-    const subject = encodeURIComponent(`Commande Hibys - ${orderForm.name}`);
-    const body = encodeURIComponent(`
-Nouvelle commande Hibys:
+    setSubmitStatus('loading');
 
-Nom: ${orderForm.name}
-Email: ${orderForm.email}
-Téléphone: ${orderForm.phone}
-Quantité: ${orderForm.quantity} bouteille(s)
-Message: ${orderForm.message || 'Aucun message'}
+    const formData = new FormData();
+    formData.append('Nom', orderForm.name);
+    formData.append('Email', orderForm.email);
+    formData.append('Quantité', `${orderForm.quantity} bouteille(s)`);
+    if (orderForm.phone.trim()) {
+      formData.append('Téléphone', orderForm.phone);
+    }
+    if (orderForm.message.trim()) {
+      formData.append('Message', orderForm.message);
+    }
+    formData.append('_subject', `Nouvelle commande Hibys - ${orderForm.name}`);
 
----
-Commande envoyée depuis le site Hibys
-    `);
+    try {
+      const response = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
 
-    window.location.href = `mailto:contact@hibys.fr?subject=${subject}&body=${body}`;
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-      setOrderForm(initialFormState);
-      setErrors({});
-    }, 3000);
+      if (response.ok) {
+        setSubmitStatus('success');
+        setTimeout(() => {
+          setSubmitStatus('idle');
+          onClose();
+          setOrderForm(initialFormState);
+          setErrors({});
+        }, 3000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch {
+      setSubmitStatus('error');
+    }
   };
 
   const handleClose = useCallback(() => {
+    if (submitStatus === 'loading') return;
     onClose();
     setOrderForm(initialFormState);
     setErrors({});
-    setSubmitted(false);
-  }, [onClose]);
+    setSubmitStatus('idle');
+  }, [onClose, submitStatus]);
 
   // Handle Escape key
   useEffect(() => {
@@ -178,7 +189,6 @@ Commande envoyée depuis le site Hibys
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          ref={closeButtonRef}
           onClick={handleClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
           aria-label="Fermer la fenêtre de commande"
@@ -186,7 +196,7 @@ Commande envoyée depuis le site Hibys
           <X className="w-6 h-6" />
         </button>
 
-        {submitted ? (
+        {submitStatus === 'success' ? (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Send className="w-8 h-8 text-green-600" aria-hidden="true" />
@@ -197,6 +207,24 @@ Commande envoyée depuis le site Hibys
             <p className="text-gray-600">
               Nous vous contacterons très bientôt.
             </p>
+          </div>
+        ) : submitStatus === 'error' ? (
+          <div className="text-center py-8">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <X className="w-8 h-8 text-red-600" aria-hidden="true" />
+            </div>
+            <h3 id="modal-title" className="text-2xl font-bold text-gray-800 mb-2">
+              Erreur d'envoi
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Une erreur s'est produite. Veuillez réessayer.
+            </p>
+            <button
+              onClick={() => setSubmitStatus('idle')}
+              className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Réessayer
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} noValidate>
@@ -255,26 +283,16 @@ Commande envoyée depuis le site Hibys
 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                  Téléphone <span className="text-red-500">*</span>
+                  Téléphone (optionnel)
                 </label>
                 <input
                   id="phone"
                   type="tel"
-                  required
                   value={orderForm.phone}
                   onChange={(e) => setOrderForm({ ...orderForm, phone: e.target.value })}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors ${
-                    errors.phone ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors"
                   placeholder="06 XX XX XX XX"
-                  aria-invalid={!!errors.phone}
-                  aria-describedby={errors.phone ? 'phone-error' : undefined}
                 />
-                {errors.phone && (
-                  <p id="phone-error" className="text-red-500 text-sm mt-1" role="alert">
-                    {errors.phone}
-                  </p>
-                )}
               </div>
 
               <div>
@@ -317,10 +335,20 @@ Commande envoyée depuis le site Hibys
 
               <button
                 type="submit"
-                className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
+                disabled={submitStatus === 'loading'}
+                className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-5 h-5" aria-hidden="true" />
-                Envoyer la commande
+                {submitStatus === 'loading' ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" aria-hidden="true" />
+                    Envoyer la commande
+                  </>
+                )}
               </button>
 
               <p className="text-sm text-gray-500 text-center">

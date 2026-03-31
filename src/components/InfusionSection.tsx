@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const fadeInLeft = {
   hidden: { opacity: 0, x: -50 },
@@ -15,7 +15,7 @@ export const InfusionSection = () => {
     <section className="py-20 bg-white" aria-labelledby="infusion-title">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
+          <m.div
             variants={fadeInLeft}
             initial="hidden"
             whileInView="visible"
@@ -32,8 +32,8 @@ export const InfusionSection = () => {
               Consommée depuis des millénaires en Afrique pour ses vertus médicinales, l'hibiscus aide à réguler la tension artérielle,
               facilite la digestion et contribue à maintenir un taux de cholestérol sain. Un véritable élixir de jouvence à portée de main.
             </p>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             className="relative"
             variants={fadeInRight}
             initial="hidden"
@@ -41,14 +41,14 @@ export const InfusionSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
           >
-            <motion.img
+            <m.img
               src="/verre.webp"
               alt="Verre d'infusion Hibys à base d'hibiscus"
               className="w-full h-96 object-cover rounded-3xl shadow-2xl"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

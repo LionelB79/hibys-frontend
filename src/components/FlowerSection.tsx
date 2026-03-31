@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const fadeInLeft = {
   hidden: { opacity: 0, x: -50 },
@@ -15,7 +15,7 @@ export const FlowerSection = () => {
     <section className="py-20 bg-red-50" aria-labelledby="flower-title">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
+          <m.div
             className="order-2 md:order-1 relative"
             variants={fadeInLeft}
             initial="hidden"
@@ -23,15 +23,15 @@ export const FlowerSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
           >
-            <motion.img
+            <m.img
               src="/fleurs.jpg"
               alt="Fleurs d'Hibiscus Sabdariffa du Burkina Faso"
               className="w-full h-96 object-cover rounded-3xl shadow-2xl"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             />
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             className="order-1 md:order-2"
             variants={fadeInRight}
             initial="hidden"
@@ -50,7 +50,7 @@ export const FlowerSection = () => {
               Récoltées à la main dans le respect des coopératives locales, nous sélectionnons uniquement les calices les plus riches
               en principes actifs pour vous garantir une efficacité optimale.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>
