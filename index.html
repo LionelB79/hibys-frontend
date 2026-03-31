@@ -3,33 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO -->
-    <title>Hibys - Infusion d'hibiscus artisanale | Boisson bien-être naturelle</title>
-    <meta name="description" content="Hibys, infusion artisanale d'Hibiscus Sabdariffa du Burkina Faso. Boisson naturelle aux multiples bienfaits : antioxydants, vitamine C, protection cardiovasculaire. Disponible au marché de Niort." />
-    <meta name="keywords" content="hibiscus, infusion, boisson naturelle, bien-être, antioxydants, karkadé, Niort, artisanal" />
+    <!-- SEO Primary -->
+    <title>Hibys | Bissap & Infusion d'Hibiscus Artisanale à Niort - Boisson Naturelle</title>
+    <meta name="description" content="Hibys : bissap et infusion d'hibiscus artisanale à Niort. Boisson naturelle au karkadé du Burkina Faso, riche en antioxydants et vitamine C. Commandez en ligne, retrait au marché de Niort le dimanche." />
+    <meta name="keywords" content="hibys, bissap, hibiscus, infusion hibiscus, karkadé, boisson hibiscus, jus hibiscus, Niort, marché Niort, boisson naturelle, bien-être, antioxydants, vitamine C, Burkina Faso, boisson africaine, infusion naturelle, bissap Niort, hibiscus Niort" />
     <meta name="author" content="Hibys" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Geo Tags pour SEO local -->
+    <meta name="geo.region" content="FR-79" />
+    <meta name="geo.placename" content="Niort" />
+    <meta name="geo.position" content="46.3234;-0.4648" />
+    <meta name="ICBM" content="46.3234, -0.4648" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hibys.fr/" />
-    <meta property="og:title" content="Hibys - Infusion d'hibiscus artisanale" />
-    <meta property="og:description" content="Découvrez Hibys, une infusion naturelle d'Hibiscus Sabdariffa aux mille vertus pour votre santé." />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:title" content="Hibys | Bissap & Infusion d'Hibiscus à Niort" />
+    <meta property="og:description" content="Bissap artisanal et infusion d'hibiscus naturelle. Commandez en ligne, retrait au marché de Niort. Boisson riche en antioxydants du Burkina Faso." />
+    <meta property="og:image" content="https://hibys.fr/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Hibys" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://hibys.fr/" />
-    <meta property="twitter:title" content="Hibys - Infusion d'hibiscus artisanale" />
-    <meta property="twitter:description" content="Découvrez Hibys, une infusion naturelle d'Hibiscus Sabdariffa aux mille vertus pour votre santé." />
-    <meta property="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://hibys.fr/" />
+    <meta name="twitter:title" content="Hibys | Bissap & Infusion d'Hibiscus à Niort" />
+    <meta name="twitter:description" content="Bissap artisanal et infusion d'hibiscus naturelle. Boisson riche en antioxydants du Burkina Faso. Marché de Niort." />
+    <meta name="twitter:image" content="https://hibys.fr/og-image.jpg" />
 
     <!-- Theme color -->
     <meta name="theme-color" content="#DC2626" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://hibys.fr/" />
+
+    <!-- Structured Data - Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Hibys",
+      "description": "Bissap et infusion d'hibiscus artisanale à Niort. Boisson naturelle au karkadé du Burkina Faso.",
+      "url": "https://hibys.fr",
+      "email": "hibys.fr@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Niort",
+        "addressRegion": "Nouvelle-Aquitaine",
+        "postalCode": "79000",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 46.3234,
+        "longitude": -0.4648
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "08:00",
+        "closes": "13:00"
+      },
+      "priceRange": "€",
+      "image": "https://hibys.fr/og-image.jpg",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Structured Data - Product -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Hibys - Infusion d'Hibiscus",
+      "description": "Infusion artisanale de bissap (hibiscus) du Burkina Faso. Boisson naturelle riche en antioxydants et vitamine C.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Hibys"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "2.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Hibys"
+        }
+      },
+      "image": "https://hibys.fr/verre.webp"
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
